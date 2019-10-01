@@ -12,7 +12,8 @@ namespace DLL
 {
     public class DataAccess
     {
-        private readonly string con = ConfigurationManager.ConnectionStrings["User"].ConnectionString;
+        private string con = "Data Source=advworkscarl.database.windows.net,1433;Initial Catalog = User; User ID=dev; Password=5611S@ddle;Connect Timeout = 30; Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //private string con = ConfigurationManager.ConnectionStrings["Users"].ConnectionString;
 
         public  void InsertUser(User user)
         {
@@ -35,7 +36,7 @@ namespace DLL
         public List<User> GetUsers()
         {
             List<User> getUsers = new List<User>();
-            using(SqlConnection connection = new SqlConnection(con))
+            using (SqlConnection connection = new SqlConnection(con))
             {
                 using (SqlCommand command = new SqlCommand("GetUsers", connection))
                 {
@@ -53,11 +54,11 @@ namespace DLL
                                 try
                                 {
                                     User user = new User();
-                                    if(read["userId"] != DBNull.Value)
+                                    if (read["userId"] != DBNull.Value)
                                     {
                                         user.UserId = (int)read["userId"];
                                     }
-                                    else { }
+                                    else { user.UserId = 0; }
                                     if (read["firstName"] != DBNull.Value)
                                     {
                                         user.FirstName = read["firstName"].ToString();
@@ -68,7 +69,7 @@ namespace DLL
                                         user.LastName = (string)read["lastName"].ToString();
                                     }
                                     else { }
-                                    if(read["dob"] != DBNull.Value)
+                                    if (read["dob"] != DBNull.Value)
                                     {
                                         user.DOB = (DateTime)read["dob"];
                                     }
@@ -113,9 +114,9 @@ namespace DLL
         public  List<Exceptions> GetExceptions()
         {
             List<Exceptions> getAll = new List<Exceptions>();
-            using(SqlConnection connection = new SqlConnection(con))
+            using (SqlConnection connection = new SqlConnection(con))
             {
-                
+
                 using (SqlCommand command = new SqlCommand("GetExceptions", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -123,7 +124,8 @@ namespace DLL
                     connection.Open();
                     using (SqlDataReader read = command.ExecuteReader())
                     {
-                        if (read.HasRows) {
+                        if (read.HasRows)
+                        {
                             while (read.Read())
                             {
                                 try
@@ -141,7 +143,7 @@ namespace DLL
                                     else { }
                                     getAll.Add(exceptions);
                                 }
-                                catch(Exception ex)
+                                catch (Exception ex)
                                 {
                                     Exceptions exceptions = new Exceptions();
                                     exceptions.Message = ex.Message;

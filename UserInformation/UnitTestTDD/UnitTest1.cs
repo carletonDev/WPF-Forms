@@ -12,11 +12,8 @@ namespace UnitTestTDD
         [TestMethod]
         public void GetUsers()
         {
-       
-            //Act
-            List<User> users = BusinessLogic.GetUsers();
-            //Assert
-            Assert.IsTrue(users.Count >= 1);
+
+            Assert.IsTrue(BusinessLogic.GetUsers().Count >= 1);
         }
         [TestMethod]
         public void InsertUsers()
