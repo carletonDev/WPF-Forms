@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UserInformation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="UserInformation" Height="1000" Width="1500">
+    <Grid Margin="-1055,-147,-737,-179">
+        <DatePicker Name="Dob" HorizontalAlignment="Left" Margin="1440,510,0,0" VerticalAlignment="Top" Height="60" Width="465" RenderTransformOrigin="0.49,1.429"/>
+        <TextBox Name="First" HorizontalAlignment="Left" Height="65" Margin="1445,315,0,0" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top" Width="460" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.229"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.987"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Name="Last" HorizontalAlignment="Left" Height="70" Margin="1440,415,0,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top" Width="465"/>
+        <Button Name="Submit" Content="Submit" HorizontalAlignment="Left" Height="60" Margin="1340,1000,0,0" VerticalAlignment="Top" Width="255" Click="Submit_Click"/>
+        <TextBox Name="City" HorizontalAlignment="Left" Height="65" Margin="1440,600,0,0" TextWrapping="Wrap" Text="City" VerticalAlignment="Top" Width="465"/>
+        <TextBox Name="State" HorizontalAlignment="Left" Height="60" Margin="1440,690,0,0" TextWrapping="Wrap" Text="State" VerticalAlignment="Top" Width="465"/>
+        <TextBox Name="Zip" HorizontalAlignment="Left" Height="63" Margin="1440,782,0,0" TextWrapping="Wrap" Text="Zip" VerticalAlignment="Top" Width="465" RenderTransformOrigin="0.083,-0.217"/>
+        <Label HorizontalAlignment="Left" Margin="1295,335,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label Content="Last Name" HorizontalAlignment="Left" Margin="1295,415,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label Content="Date of Birth" HorizontalAlignment="Left" Margin="1295,510,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label Content="City" HorizontalAlignment="Left" Margin="1295,600,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label Content="First Name" HorizontalAlignment="Left" Margin="1295,335,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label Content="State" HorizontalAlignment="Left" Margin="1295,690,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label Content="Zip" HorizontalAlignment="Left" Margin="1295,778,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label  Name="Insert" Content="Status" HorizontalAlignment="Left" Margin="2225,415,0,0" VerticalAlignment="Top"/>
+
+
     </Grid>
 </Window>
