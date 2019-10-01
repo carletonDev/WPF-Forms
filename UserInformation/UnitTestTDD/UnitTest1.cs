@@ -12,18 +12,15 @@ namespace UnitTestTDD
         [TestMethod]
         public void GetUsers()
         {
-            //Arrange 
-            BusinessLogic bll = new BusinessLogic();
+       
             //Act
-            List<User> users = bll.GetUsers();
+            List<User> users = BusinessLogic.GetUsers();
             //Assert
             Assert.IsTrue(users.Count >= 1);
         }
         [TestMethod]
         public void InsertUsers()
         {
-            //Arrange 
-            BusinessLogic bll = new BusinessLogic();
             //Act
 
             //create a new user
@@ -36,15 +33,27 @@ namespace UnitTestTDD
             user.Zip = 23222;
 
             //insert new user
-            bll.InsertUser(user);
 
-            //get a list of users
-            List<User> getUser = bll.GetUsers();
-            //find Carleton
+            BusinessLogic.InsertUser(user);
+
+           // get a list of users
+            List<User> getUser = BusinessLogic.GetUsers();
+           // find Carleton
             User Carleton = getUser.Find(m => m.FirstName == user.FirstName);
             //Assert-Carleton is not a null object and in the database
             Assert.IsNotNull(Carleton);
-            
+
+        }
+        [TestMethod]
+        public void StoreExceptions()
+        {
+            //Arrange 
+            Exceptions exception = new Exceptions();
+            //Act
+            exception.Message = "Test Message";
+
+            BusinessLogic.StoreExceptions(exception);
+            //Assert
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DatabaseObjects
 {
-    public class Exceptions
+    public  class Exceptions
     {
-        public int ID { get; set; }
-        public string Message { get; set; }
+        public  int ID { get; set; }
+        public  string Message { get; set; }
     }
 }
