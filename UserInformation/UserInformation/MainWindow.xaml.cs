@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace UserInformation
 {
     /// <summary>
@@ -22,10 +23,13 @@ namespace UserInformation
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        IBusinessLogic businessLogic { get; set; }
+        public MainWindow(IBusinessLogic business)
         {
             InitializeComponent();
+            this.businessLogic = business;
             Insert.Visibility=Visibility.Hidden;
+            
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)
@@ -39,15 +43,16 @@ namespace UserInformation
             user.DOB = Dob.SelectedDate.Value;
 
 
-            BusinessLogic.InsertUser(user);
+            businessLogic.InsertUser(user);
 
-            List<User> getUsers = BusinessLogic.GetUsers();
+            List<User> getUsers = businessLogic.GetUsers();
             User check = getUsers.Find(m => m.FirstName == user.FirstName && m.LastName == user.LastName);
 
             if(check.FirstName != null)
             {
                 
                 Insert.Content = "User Added";
+
                 Insert.Visibility = Visibility.Visible;
                 Clear();
                 

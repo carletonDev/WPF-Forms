@@ -7,22 +7,32 @@ using DLL;
 using DatabaseObjects;
 namespace BLL
 {
-    public static class BusinessLogic
+    public class BusinessLogic:IBusinessLogic
     {
-        public static void InsertUser(User user)
+        private readonly IDataAccess dataAccess;
+      public BusinessLogic(IDataAccess access)
         {
-            DataAccess data = new DataAccess();
-            data.InsertUser(user);
+            this.dataAccess = access;
         }
-        public static List<User> GetUsers()
+
+        public void InsertUser(User user)
         {
-            DataAccess data = new DataAccess();
-            return data.GetUsers();
+            this.dataAccess.InsertUser(user);
         }
-        public static void StoreExceptions(Exceptions exception)
+
+        public List<User> GetUsers()
         {
-            DataAccess data = new DataAccess();
-            data.StoreExceptions(exception);
+           return this.dataAccess.GetUsers();
+        }
+
+        public List<Exceptions> GetExceptions()
+        {
+            return this.dataAccess.GetExceptions();
+        }
+
+        public void StoreExceptions(Exceptions exception)
+        {
+            this.dataAccess.StoreExceptions(exception);
         }
     }
 }

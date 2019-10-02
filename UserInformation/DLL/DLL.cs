@@ -10,11 +10,10 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    public class DataAccess
+    public class DataAccess:IDataAccess
     {
-        private string con = "Data Source=advworkscarl.database.windows.net,1433;Initial Catalog = User; User ID=dev; Password=5611S@ddle;Connect Timeout = 30; Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //private string con = ConfigurationManager.ConnectionStrings["Users"].ConnectionString;
-
+        private string con = "Data Source=advworkscarl.database.windows.net,1433;Initial Catalog=User;User ID=dev;Password=5611S@ddle;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public  void InsertUser(User user)
         {
             using(SqlConnection connection = new SqlConnection(con))
@@ -174,6 +173,20 @@ namespace DLL
                     command.ExecuteNonQuery();
                 }
             }
+        }
+        public static string GetConnection()
+        {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder.DataSource = "advworkscarl.database.windows.net,1433";
+            builder.UserID = "dev";
+            builder.Password = "5611S@ddle";
+            builder.InitialCatalog = "Users";
+            builder.ConnectTimeout = 30;
+            builder.Encrypt = true;
+            builder.TrustServerCertificate = false;
+            builder.ApplicationIntent = ApplicationIntent.ReadWrite;
+            builder.MultiSubnetFailover = false;
+            return builder.ConnectionString;
         }
     }
 }
